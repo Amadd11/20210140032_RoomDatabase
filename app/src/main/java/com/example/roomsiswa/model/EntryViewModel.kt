@@ -1,7 +1,10 @@
 package com.example.roomsiswa.model
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.roomsiswa.data.Siswa
 import com.example.roomsiswa.repository.RepositorySiswa
 
 class EntryViewModel(private val repositorySiswa: RepositorySiswa): ViewModel() {
@@ -38,4 +41,23 @@ data class DetailSiswa(
     val nama: String = "",
     val alamat: String = "",
     val telpon: String = "",
+)
+/* Fungsi untuk mengkonversi data input ke data dalam tabel sesuai jenis datanya */
+fun DetailSiswa.toSiswa(): Siswa = Siswa(
+    id = id,
+    nama = nama,
+    alamat = alamat,
+    telpon = telpon
+)
+
+fun Siswa.toUiStateSiswa(isEntryValid: Boolean = false): UIStateSiswa = UIStateSiswa(
+    detailSiswa = this.toDetailSiswa(),
+    isEntryValid = isEntryValid
+)
+
+fun Siswa.toDetailSiswa(): DetailSiswa = DetailSiswa(
+    id = id,
+    nama = nama,
+    alamat = alamat,
+    telpon = telpon
 )
