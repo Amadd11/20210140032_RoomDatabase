@@ -1,5 +1,6 @@
 package com.example.roomsiswa.model
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.roomsiswa.repository.RepositorySiswa
 
@@ -28,3 +29,7 @@ class EntryViewModel(private val repositorySiswa: RepositorySiswa): ViewModel() 
         }
     }
 }
+data class UIStateSiswa(
+    val detailSiswa: DetailSiswa = DetailSiswa(),
+    val isEntryValid: Boolean = false
+)
